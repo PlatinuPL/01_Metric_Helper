@@ -1,3 +1,4 @@
+# the program to chnge metric value like MEGA,KILO,MICRO to other one.
 from email.mime import base
 import tkinter
 from tkinter import StringVar, ttk, END
