@@ -1,3 +1,4 @@
+# This program change metric value like MEGA,KILO,MICRO to other one.
 from email.mime import base
 import tkinter
 from tkinter import StringVar, ttk, END
@@ -16,6 +17,7 @@ root.config(bg = bg_color)
 
 # Define Functions
 def convert():
+    """Convert from one metric prefix to another"""
     metric_value = {
         "femto":10**-15, 
         'pico':10**-12, 
@@ -33,19 +35,22 @@ def convert():
         'tera':10**12,
         'peta':10**15
     }
-
+    #Clear the output field
     output_field.delete(0,END)
 
     # Get all user information
     start_value = float(input_field.get())
     start_prefix = input_combobox.get()
     end_prefix = output_combobox.get() 
-
+    
+    #Covert to the base unit first
     base_value = start_value*metric_value[start_prefix]
-
+    #Covert to new metric value
     end_value = base_value/metric_value[end_prefix]
 
+    #Update output field with answer
     output_field.insert(0, str(end_value))
+
 # Define Layout
 
 # Create the input and output entry fields
@@ -59,7 +64,7 @@ output_field.grid(row = 0, column=2, padx = 20, pady = 20)
 
 input_field.insert(0, "Enter your quantity")
 
-#Create dropdowns for metric values
+#Create combobox for metric values
 metric_list = ["femto", 'pico', 'nano', 'micro', 'mili', 'centi', 'deci', 'base value', 'deca', 'hecto', 'kilo', 'mega', 'giga', 'tera', 'peta']
 input_combobox = ttk.Combobox(root, value=metric_list, font=field_font, justify="center")
 output_combobox = ttk.Combobox(root, value=metric_list, font=field_font, justify="center")
